@@ -1,0 +1,288 @@
+<html>
+
+<head>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        /* هذا البوكس اللي جواته صوره */
+        .header {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            /*  هذي حطيناها خاصه بالديف اللي داخله صوره زي البوكس اللي داخلة بوكس بحيث يخف المحتوى الزايد عن حجم البوكس هذا*/
+            position: relative;
+            border-bottom: 10px solid #087a79;
+            /* عشان يعطينا الاطار اللي تحت سخيف/*/
+        }
+
+        /* لما نحدد ابعاد الصوره داخل بوكس نحدد العرض فقط لان لو حددنا طول مع عرض رح تنضغط ابعاد الصوره وماتكون واضحه الصوره */
+        #header-image {
+            width: 100%;
+            position: relative;
+            /* استعلمنا هذا الوضع عشان نبي نحرك الصوره من مكانها الحالي*/
+            bottom: 300;
+        }
+
+        #cover {
+            background-color: black;
+            width: 100%;
+            height: 100%;
+            /*يشوف العنصر المحيط له له طول وعرض وياخذ المساحه كامله زيه عشان كذا نستعمل %  */
+            position: absolute;
+            /* غيرنا من ستاتيك لان الصوره ريلتف والريلتف مايتفاعل بشكل صحيح مع الستاتيك ,,,, وماحطينا 
+            البوسيشين ريلتف لانه ياخذ بعين الاعتبار وين يطلع ف الصوره اول تطلع بعدين هذا البوكس عشان كذا اخترنا ابسلوت ,,,,
+            وحتى يوم اخترنا ابسلوت ماطلعت فوق الصوره اول لازم نحدد وين يطلع ,,,,, لان الابسليوت يطالع بالعنصر المحيط فيه ويححط الموضع 
+            عشان كذا لازم نحط العنصر المحيط فيه ريلتيف بحكم انه ماياثر ولارح شي يتفاعل معه ويطلع بالمكان نفسه اللي انا فيه حاليا */
+            bottom: 0;
+            /*ماسوينا الخطوه اللي فوق وحددنا هنا وين موضع الان تظهر البوكس فوق الصورة  */
+            opacity: 0.5;
+            /*شفافيه الصوره */
+        }
+
+        #menue-header {
+            width: 100%;
+            height: 50px;
+            position: absolute;
+            /* حطيناها ابسلوت عشان نبيها تطلع فوق الهيدر كله */
+            top: 0;
+            left: 0;
+            /* مارح يتغير شي ولايجي ع اليمين لان العرض 100% لان انتي ماتستهدفين الديف حق المحتوى لاتستهدفين البوكس الاشمل */
+            direction: rtl;
+            /* نقدر نستعمل خواص ثانيه زي تكست الاين او مارجن ,,,, بس استعملنا هذا بحكم ان ازرار بتجي بجنبه*/
+        }
+
+        #menue {
+            margin-right: 10px;
+            margin-top: 20px;
+        }
+
+        /* btn اسم شائع فالحركه ذي تعني طبق هذا الستايل فقط ع البتن الي داخل المينيو */
+        #menue>.btn {
+
+            margin-right: 30px;
+            color: white;
+            text-decoration: none;
+            /* لان فيها خط نبي نشيله*/
+            padding: 5px;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        #menue>.btn:hover {
+
+            background-color: rgb(88, 88, 88, 0.5);
+        }
+
+        .active {
+            background-color: #087a79;
+        }
+
+        #main-content {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* عشان اوسطهم عمودي وافقيا */
+            top: -250px;
+            /* افضل من البوتم عشان تحت رح يكون في عناصر عشان تكون فوق*/
+        }
+
+        #img-frame {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #087a79;
+            border-radius: 50%;
+            margin: 0 auto;
+            /* عشان نوسط الفريم بالنص*/
+            box-shadow: 0px 9px 8px #c7c7c7;
+            transition: background 0.2s, padding 0.4s;
+        }
+
+        #img-frame>img {
+            /* سوينا الطول كذا عشان الصوره كانت برا الاطار ومانقدر نحط اوفرفلو لان رح تنقص الصوره
+            فكذا حتاخذ المقاس كامل لكن جوا البوكس والعرض ماكتبناه اوتاماتيكي يسويها متعادله  */
+            height: 100%;
+        }
+
+        #center-content {
+            color: white;
+            text-align: center;
+            font-size: 29;
+        }
+
+        #img-frame:hover {
+            box-shadow: 0px 9px 8px #959595;
+            padding: 15px;
+        }
+
+        #main-body {
+            position: relative;
+            top: -200;
+        }
+
+        #main-body>#main-header>h1 {
+            font-size: 30;
+           
+        }
+
+        #main-body>#main-header {
+            color: #6b6b6b;
+            text-align: center;
+            font-size: 18px;  
+            
+        }
+
+        #features, #courses {
+            direction: rtl;
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .feature, .course{
+            margin: 0px 50px ;
+            background-color: rgb(221, 221, 221);
+            width: 300px;
+            text-align: center;
+            color: #087a79;
+        }
+        .course > img{
+            height: 100px;
+        }
+        .course{
+            background-color: transparent;
+            display: flex;
+            border: 1px, solid,#585858;
+            margin: 0px 30px;
+            border-radius: 10px;
+            width: 30%;
+            font-size: 13px;
+            box-shadow: 0px 2px 8px rgb(219, 219, 219);
+        }
+        .course h2{
+            margin-right: 12px;
+            color: rgb(104, 104, 104);
+
+        }
+        .course button{
+            background-color: #087a79;
+            border: none;
+            color: white;
+            height: 30px;
+            width: 90px;
+
+        }
+        #courses-section{
+            margin-top: 150px;
+            background-color: rgb(235, 235, 235);
+            padding: 20px 0px;
+            direction: rtl;
+        }
+        #courses-section >h1{
+            margin-right: 30px;
+            font-size: 40px;
+        }
+        #footer{
+            background-color: #043837;
+            color: white;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <div class="main-header">
+        <div class="header">
+            <img id="header-image" src="header.jpeg">
+            <div id="cover"></div>
+
+            <div id="menue-header"><!-- ]دايما لمن يكون في عناصر متقاربه ببعض نحطلها بوكس خارجي -->
+                <div id="menue"> <!-- وداخله البوكس اللي فيه محتويات عشان يرتب الشغل-->
+                    <a href="" class="btn active">الرئيسيه</a>
+                    <!--الزر اللي له تاثيرات اضافيه غيرعن الباقي نضيفله كلاس جديد-->
+                    <a href="" class="btn">دورات</a>
+                    <a href="" class="btn">مقالات</a>
+                    <a href="" class="btn">ملخصات</a>
+                    <a href="" class="btn">مصادر</a>
+                </div>
+
+            </div>
+
+        </div>
+        <div id="main-content">
+            <div id="center-content"><!-- سوينا ديف للسينتر عشان نوسط العناصر جواتها الاتش ون بدونها ماحنقدر نوسطها -->
+                <h1>اكاديمية ترميز</h1>
+                <div id="img-frame">
+                    <img src="white-logo.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-body">
+
+        <div id="main-header">
+            <h1>أكاديمية ترميز لتعليم البرمجة</h1>
+        </div>
+        <div id="features">
+            <div class="feature">
+                <h1><Span>✅</Span> دروس منوعة</h1>
+            </div>
+
+            <div class="feature">
+                <h1><Span>✅</Span> باللغه العربيه</h1>
+            </div>
+
+            <div class="feature">
+                <h1><Span>✅</Span> بجودة عاليه</h1>
+            </div>
+        </div>
+
+        <div id="courses-section">
+            <h1>دورات تطوير المواقع</h1>
+            <div id="courses">
+                <div class="course">
+                    <img src="html-course.png" alt="">
+                    <div>
+                        <h2> سلسله دروس الhtml</h2>
+                        <button>مشاهدة</button>
+                    </div>
+                </div>
+                <div class="course">
+                    <img src="css-course.png" alt="">
+                    <div>
+                        <h2>سلسله دروس الcss</h2>
+                        <button>مشاهدة</button>
+                    </div>
+                </div>
+                <div class="course">
+                    <img src="git-course.png" alt="">
+                    <div>
+                        <h2>  سلسله دروس ال git</h2>
+                        <button>مشاهدة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        <h5>جميع الحقوق محفوظه - اكاديميه ترميز 2020</h5>
+    </div>
+</body>
+
+</html>
